@@ -10,6 +10,9 @@ function requestHandle(params) {
       method: params.method,
       data: params.data,
       success: data => {
+        /* @desc: 优化！存储请求返回的时间，以保证可能需要使用时间的正确性; */
+        $utils.setCurrentTime(data.headers.Date)
+
         const serverResponse = JSON.parse(data.data)
         if (serverResponse.success) {
           resolve(serverResponse.value)

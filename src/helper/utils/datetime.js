@@ -9,7 +9,7 @@
  * @format
  */
 
-Date.prototype.Format = function(fmt) {
+Date.prototype.Format = function(fmt = 'yyyy-MM-dd hh:mm:ss') {
   var o = {
     'M+': this.getMonth() + 1,
     'd+': this.getDate(),
@@ -29,6 +29,14 @@ Date.prototype.Format = function(fmt) {
 }
 
 export default {
+  setCurrentTime(datetime = '') {
+    global.currentTime = datetime
+  },
+
+  getCurrentTime() {
+    return global.currentTime || ''
+  },
+
   dateOffset(thatTime, nowTime) {
     if (!arguments.length) return ''
 

@@ -10,6 +10,7 @@
     </div>
     <WaterWorld></WaterWorld>
     <div class="nice-detail find-more wrapper-padding">
+      <text class="desc">当前时间：<span class="datetime">{{ currentTime }}</span></text>
       <text class="title">探索更广阔的世界，为您</text>
       <text class="desc">在这个信息化的世界，海量的讯息可能让您不知所措；担心错过她而努力汲取的同时，却可能错过更多；</text>
       <text class="desc"><a class="external-link" href="{{ niceJumpLink }}">「倾城之链」</a>的存在，即是为您解决这种困扰；在这里，您可以浏览全球各类智慧的结晶；</text>
@@ -45,7 +46,8 @@
 
     protected: {
       title: appInfo.name,
-      icon: appInfo.icon
+      icon: appInfo.icon,
+      currentTime: ''
     },
 
     onInit () {
@@ -62,6 +64,7 @@
       const params = { active: true }
       global.$apis.links.getAllLinksCount(params).then(result => {
         this.totalLinksCount = result
+        this.currentTime = (new Date($utils.getCurrentTime())).Format()
       }).catch((error) => {
         console.log(error)
       })
@@ -99,6 +102,9 @@
     .nice-detail {
       height: 100 * @size-factor;;
       .flex-box-mixins(column, center, center);
+    }
+    .datetime {
+      color: @jade;
     }
     .find-more {
       background-color: @black;

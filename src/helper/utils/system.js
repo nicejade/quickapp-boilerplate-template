@@ -83,10 +83,11 @@ export default {
     })
   },
 
-  promptMessage(message = '') {
+  showToast(message = '', duration = 0) {
     if (!message) return
     prompt.showToast({
-      message: message
+      message: message,
+      duration
     })
   },
 
