@@ -2,7 +2,7 @@
   /**
    * @desc: 引入{轻粒子快应用统计}代码
    */
-  // import "./assets/js/appStatistics.min.js"
+  import "./assets/js/appStatistics.min.js"
   import { $utils, $apis } from './helper'
 
   /* @desc: 注入方法至全局 global, 以便页面调用 */
@@ -15,7 +15,7 @@
     showMenu: $utils.showMenu,
     createShortcut: $utils.createShortcut,
     onCreate () {
-      // APP_STATISTICS.app_sta_init(this)
+      APP_STATISTICS.app_sta_init(this)
     }
   }
 </script>

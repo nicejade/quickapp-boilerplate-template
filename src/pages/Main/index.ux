@@ -55,7 +55,7 @@
     },
 
     onShow () {
-      // APP_STATISTICS.page_show(this)
+      APP_STATISTICS.page_show(this)
       /**
        * @desc: 调用 API：global.$apis || this.$app._def.$apis (前者更简洁);
        */
@@ -68,7 +68,7 @@
     },
 
     onHide() {
-      // APP_STATISTICS.page_hide(this)
+      APP_STATISTICS.page_hide(this)
     },
 
     // (监听菜单按钮动作)当用户点击菜单按钮时触发

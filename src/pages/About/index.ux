@@ -56,10 +56,10 @@
       this.$page.setTitleBar({ text: this.name })
     },
     onShow(){
-      // APP_STATISTICS.page_show(this)
+      APP_STATISTICS.page_show(this)
     },
     onHide() {
-      // APP_STATISTICS.page_hide(this)
+      APP_STATISTICS.page_hide(this)
     },
     createShortcut () {
       $utils.createShortcut()
