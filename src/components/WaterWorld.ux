@@ -1,0 +1,154 @@
+<template>
+  <div class="nice-particle">
+    <canvas show="{{isShowFlag}}" id="waterCanvas" class="water-canvas"></canvas>
+  </div>
+</template>
+
+<script>
+  let tim, bai, a, b, c, s, p, r, x, y, z, x1, y1, max, p2, han, h, pt, hei;
+  const colorRandomList = [
+    [87, 209, 201, 0.3],
+    [221, 10, 53, 0.3],
+    [66, 33, 142, 0.3],
+    [43, 187, 216, 0.3],
+    [92,242,232, 0.3],
+    [135,226,147, 0.3],
+    [0, 255, 0, 0.3],
+    [255, 0, 0, 0.3],
+    [245, 223, 101, 0.3],
+    [17, 141, 240, 0.3],
+    [31, 138, 255, 0.3]
+  ]
+  export default {
+    // 页面级组件的数据模型，影响传入数据的覆盖机制：private内定义的属性不允许被覆盖;
+    protected: {
+      mCanvas: null,
+      mContext: null,
+      mWidth: 800,
+      mHeight: 300,
+      randomIndex: 0,
+      drawTimerId: null,
+      isShowFlag: false
+    },
+
+    onInit () {
+    },
+
+    onReady () {
+      setTimeout(() => {
+        this.isShowFlag = true
+        this.startNiceDraw()
+      }, 10)
+    },
+
+    onShow () {
+      this.drawParticleCanvas()
+    },
+
+    onHide () {
+      $utils.clearInterval(this.drawTimerId)
+    },
+
+    startNiceDraw () {
+      this.mCanvas = this.$element('waterCanvas')
+      this.mContext =this.mCanvas.getContext('2d');
+      this.mCanvas.width = 800;
+      this.mCanvas.height = 400;
+      this.randomIndex = $utils.getRandomInt(0, 10)
+
+      this.drawTimerId = $utils.setInterval(() => {
+        this.drawParticleCanvas()
+      }, 30)
+    },
+    drawParticleCanvas() {
+      this.mContext.globalCompositeOperation = "source-over";
+      this.mContext.fillStyle = "rgb(0, 0, 0)";
+      this.mContext.fillRect(0, 0, this.mCanvas.width, this.mCanvas.height);
+      this.mContext.globalCompositeOperation = "lighter";
+      tim = new Date().getTime() / 10;
+      const colorStr = colorRandomList[this.randomIndex].join(',')
+      this.mContext.strokeStyle = this.mContext.fillStyle = `hsla(${colorStr})`;
+
+      bai = 0.6 + Math.sin(tim / 5) * 0.2;
+      hei = 0.9 + Math.sin(tim / 100) * 0.3;
+
+      pt = [];
+      for (c = 0; c < 180; c++) {
+        s = (c + 1) / 180;
+        han = Math.cos(s * Math.PI / 2);
+        h = Math.sin(s * Math.PI / 2);
+        s = 1 - s;
+        p = [];
+        max = (100 * han) | 0;
+        r = 0;
+        for (a = 0; a < max; a++) {
+          x = Math.cos(r) * han;
+          y = Math.sin(r) * han;
+          z = this.nami(r, s);
+          x -= z * s;
+          p.push([x, y, hei + z * s + h]);
+          r += Math.PI * 2 / max;
+        }
+        pt.push(p);
+      }
+      for (c = 0; c < 100; c++) {
+        s = (c + 1) / 100;
+        p = [];
+        max = 100 * s;
+        r = 0;
+        for (a = 0; a < max; a++) {
+          x = Math.cos(r) * s;
+          y = Math.sin(r) * s;
+          z = this.nami(r, s);
+          x -= z * s;
+          p.push([x, y, hei + z * s]);
+          r += Math.PI * 2 / max;
+        }
+        pt.push(p);
+      }
+      for (c = 0; c < pt.length; c++) {
+        p = pt[c];
+        p2 = [];
+        for (a = 0; a < p.length; a++) {
+          x = p[a][0];
+          y = p[a][1];
+          z = p[a][2];
+          b = Math.pow(1.5, y / 2);
+          x1 = x * b * 150 + 200;
+          y1 = z * b * 200 - hei * 200 + 150;
+          p2.push([x1, y1]);
+        }
+        this.mContext.beginPath();
+        for (a = 0; a < p2.length; a++) this.mContext.lineTo(p2[a][0], p2[a][1]);
+        this.mContext.closePath();
+        this.mContext.stroke();
+      }
+      // requestAnimationFrame(this.drawParticleCanvas)
+    },
+    nami (r, s) {
+      var a = Math.sin(r * 2 - tim / 13 + s * 13) / 20 + Math.sin(r * 5 - tim / 17 + s * 13) / 20 + Math.sin(r * 7 - tim / 19 + s * 13) / 40;
+      return a * bai;
+    },
+    onBackPress () {
+      $utils.clearInterval(this.drawTimerId)
+    },
+    onDestroy () {
+      $utils.clearInterval(this.drawTimerId)
+    }
+  }
+</script>
+
+<style lang="less">
+  @import './../assets/styles/style.less';
+  .nice-particle {
+    .flex-box-mixins(column, center, center);
+    width: 100%;
+    height: 369px;
+    background-color: @black;
+    .water-canvas {
+      background-color: @black;
+      width: 400px;
+      height: 369px;
+    }
+  }
+  </style>

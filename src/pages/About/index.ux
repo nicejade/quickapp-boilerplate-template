@@ -1,0 +1,129 @@
+<template>
+  <div class="page-wrapper about-page">
+    <!-- 应用图标 -->
+    <image class="app-icon" src="{{ icon }}"></image>
+    <!-- 应用名 -->
+    <text class="app-name">{{name}}</text>
+    <!-- 应用标签 -->
+    <div class="app-tags">
+      <text class="tag">发现</text>
+      <text class="gap">|</text>
+      <text class="tag">学习</text>
+      <text class="gap">|</text>
+      <text class="tag">分享</text>
+    </div>
+    <!-- 应用描述 -->
+    <text class="app-desc">
+      <a href="https://nicelinks.site/post/5b5fb5bc615bf842b609105f">快应用</a>
+      是移动互联网新型应用生态，与手机系统深度整合，为用户提供更加场景化的体验。具备传统APP完整的应用体验，但无需安装、即点即用。
+    </text>
+    <!-- 应用详情 -->
+    <div class="app-detail detail-first">
+      <text class="detail-title">服务类型</text>
+      <text class="detail-content">探究尝试类</text>
+    </div>
+    <div class="app-detail">
+      <text class="detail-title">主体信息</text>
+      <text class="detail-content">
+        <a class="external-link" href="https://www.jeffjade.com/?utm_source=quickapp-boilerplate-template">晚晴幽草轩</a>出品
+      </text>
+    </div>
+    <!-- 创建快捷方式 -->
+    <input class="button" type="button" onclick="createShortcut" value="创建快捷方式" />
+    <!-- 版权信息 -->
+    <text class="footer">{{ copyright }}</text>
+  </div>
+</template>
+
+<script>
+  /**
+   * 默认的菜单页(可自定义)
+   * name 默认为 manifest 文件中的 name 字段
+   * icon 默认为 manifest 文件中的 icon 字段
+   * 若需修改页面中文本，请修改ViewModel private中对应变量
+   * 注意：使用加载器测试`创建桌面快捷方式`功能时，需要进入系统：
+   *  设置->权限管理->开启应用加载器的`桌面快捷方式`权限，才能保存到桌面。
+   *  应用上线后可自动获取`桌面快捷方式`权限；
+   */
+  const appInfo = require('@system.app').getInfo()
+  export default {
+    private: {
+      name: appInfo.name,
+      icon: appInfo.icon,
+      copyright: '© 2018 jeffjade.com'
+    },
+    onInit () {
+      this.$page.setTitleBar({ text: this.name })
+    },
+    onShow(){
+      // APP_STATISTICS.page_show(this)
+    },
+    onHide() {
+      // APP_STATISTICS.page_hide(this)
+    },
+    createShortcut () {
+      $utils.createShortcut()
+    }
+  }
+</script>
+
+<style lang="less">
+@import './../../assets/styles/style.less';
+.about-page {
+  flex-direction: column;
+  align-items: center;
+  .app-icon{
+    margin-top: 4 * @size-factor;
+    margin-bottom: 0;
+  }
+  /* 应用标签 */
+  .app-tags {
+    align-items: center;
+    .tag {
+      padding-left: 20px;
+      padding-right: 20px;
+      font-size: 4.5 * @size-factor;
+      color: @jade;
+    }
+    .gap {
+      font-size: 4.5 * @size-factor;
+      color: @black-grey;
+    }
+  }
+  .app-desc {
+    width: 650px;
+    margin-top: 5 * @size-factor;
+    line-height: 35px;
+    font-size: 4 * @size-factor;
+    color: @black-grey;
+  }
+  .app-detail {
+    width: 650px;
+    height: 90px;
+    font-size: 4 * @size-factor;
+    border-bottom-width: 1px;
+    border-bottom-color: @border-grey;
+    .detail-title {
+      width: 20 * @size-factor;
+      color: @black;
+    }
+    .detail-content {
+      color: @black-grey;
+    }
+  }
+  .detail-first {
+    margin-top: 5 * @size-factor;
+    border-top-width: 1px;
+    border-top-color: @border-grey;
+  }
+  .footer {
+    width: 750px;
+    position: fixed;
+    bottom: 7 * @size-factor;
+    font-size: 4.5 * @size-factor;
+    color: @black-grey;
+    text-align: center;
+  }
+}
+</style>
+  

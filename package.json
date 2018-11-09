@@ -1,0 +1,118 @@
+{
+  "name": "quickapp-boilerplate-template",
+  "version": "1.0.0",
+  "subversion": {
+    "toolkit": "0.0.37"
+  },
+  "description": "",
+  "scripts": {
+    "start": "concurrently \"node ./command/server.js\" \"npm run watch\"",
+    "server": "hap server",
+    "watch": "hap watch",
+    "build": "hap build",
+    "postinstall": "hap postinstall",
+    "debug": "hap debug",
+    "release": "hap release",
+    "commit": "git add . && git commit -m '✨ functional update' && git push",
+    "clean-commit": "git checkout --orphan latest_branch && git add -A && git commit -am '🎉 Initial commit' && git branch -D master && git branch -m master && git push -f origin master",
+    "precommit-msg": "echo '🚧 start pre-commit checks...' && exit 0",
+    "eslint:fix": "eslint src/**/**/*.js --fix",
+    "eslint:code": "eslint src/**/**/*.js",
+    "format:code": "prettier-eslint --write \"src/**/**/*.js\" \"src/**/**/*.less\"",
+    "prettier": "prettier --write 'src/**/**/*.js'",
+    "prettier-watch": "onchange '**/*.md' -- prettier --write {{changed}}"
+  },
+  "dependencies": {
+    "md5": "^2.2.1"
+  },
+  "devDependencies": {
+    "address": "^1.0.3",
+    "babel-cli": "^6.10.1",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.1",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-preset-stage-3": "^6.24.1",
+    "concurrently": "^4.0.1",
+    "cross-env": "^5.1.4",
+    "css-what": "^2.1.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "hap-toolkit": "0.0.37",
+    "husky": "^1.0.0",
+    "koa": "^2.3.0",
+    "koa-body": "^2.5.0",
+    "koa-router": "^7.2.1",
+    "koa-send": "^4.1.1",
+    "koa-static": "^4.0.1",
+    "less": "^3.8.1",
+    "less-loader": "^4.1.0",
+    "lint-staged": "^7.3.0",
+    "opn": "^5.3.0",
+    "portfinder": "^1.0.17",
+    "prettier": "^1.14.3",
+    "prettier-eslint-cli": "^4.7.1",
+    "socket.io": "^2.1.0",
+    "webpack": "^3.11.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run precommit-msg && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/**.{js,json,pcss,md,vue,less}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false,
+    "printWidth": 120,
+    "proseWrap": "never"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "rules": {
+      "no-console": 0,
+      "no-useless-escape": 0,
+      "no-multiple-empty-lines": [
+        2,
+        {
+          "max": 3
+        }
+      ],
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": true,
+          "semi": false,
+          "trailingComma": "none",
+          "bracketSpacing": true,
+          "jsxBracketSameLine": true,
+          "insertPragma": true,
+          "requirePragma": false
+        }
+      ]
+    },
+    "plugins": [],
+    "extends": [
+      "plugin:prettier/recommended",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "parser": "babel-eslint",
+      "sourceType": "module"
+    }
+  },
+  "eslintIgnore": [
+    "package.json",
+    "src/assets/js/*.js"
+  ]
+}
