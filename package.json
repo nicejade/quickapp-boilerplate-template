@@ -1,10 +1,10 @@
 {
   "name": "quickapp-boilerplate-template",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "subversion": {
     "toolkit": "0.0.37"
   },
-  "description": "",
+  "description": "🔨致力于构建更为优雅的快应用开发脚手架模板。",
   "scripts": {
     "start": "concurrently \"node ./command/server.js\" \"npm run watch\"",
     "server": "hap server",
@@ -61,7 +61,7 @@
     }
   },
   "lint-staged": {
-    "**/**.{js,json,pcss,md,vue,less}": [
+    "**/**.{js,json,pcss,md,vue,less,scss}": [
       "prettier --write",
       "git add"
     ]
@@ -114,5 +114,15 @@
   "eslintIgnore": [
     "package.json",
     "src/assets/js/*.js"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicejade/quickapp-boilerplate-template.git"
+  },
+  "keywords": [
+    "快应用",
+    "脚手架"
+  ],
+  "author": "nicejade",
+  "license": "MIT"
 }
