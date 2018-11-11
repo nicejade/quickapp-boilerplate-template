@@ -29,7 +29,7 @@
 
 [快应用](https://nicelinks.site/post/5b5fb5bc615bf842b609105f)是基于手机硬件平台的新型应用形态，标准是由主流手机厂商组成的`快应用联盟`联合制定。其标准的诞生将在研发接口、能力接入、开发者服务等层面建设标准平台，以平台化的生态模式对个人开发者和企业开发者全品类开放。[快应用](https://nicelinks.site/post/5b5fb5bc615bf842b609105f)具备传统 APP 完整的应用体验，`无需安装、即点即用`；`覆盖 10 亿设备`，`与操作系统深度集成，探索新型应用场景`。快应用 ── **复杂生活的简单答案，让生活更顺畅**。
 
-此仓库的建立，旨在探索如何构建更为优雅的[快应用](https://nicelinks.site/post/5b5fb5bc615bf842b609105f)开发脚手架模板，为广大快应用开发者提供便利和参考；针对[快应用](https://nicelinks.site/post/5b5fb5bc615bf842b609105f)开发，更详细资料，可参见[快应用教程资源列表](https://github.com/nicejade/nice-front-end-tutorial/blob/master/tutorial/quickapp-tutorial.md)。
+[快应用](https://nicelinks.site/post/5b5fb5bc615bf842b609105f)是一种新型的应用形态，由国内九大手机厂商基于硬件平台共同推出；秒开即点即用，更易于应用的传播和留存，可以为用户提供更高效的服务。在可预见的未来，其将有不错的应用场景和发展空间。此 [quickapp-boilerplate-template](https://github.com/nicejade/quickapp-boilerplate-template) 仓库的建立，旨在探索如何更为优雅的开发[快应用](https://nicelinks.site/post/5b5fb5bc615bf842b609105f)，为广大`快应用开发者`提供便利和参考，尽可能提升开发效率、优化开发体验，使得可以在更短时间内，塑造出更为优质的`快应用`。关于[快应用](https://nicelinks.site/post/5b5fb5bc615bf842b609105f)开发更详细资料，可参见[快应用教程资源列表](https://github.com/nicejade/nice-front-end-tutorial/blob/master/tutorial/quickapp-tutorial.md)。
 
 ## 组织结构
 
