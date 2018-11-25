@@ -1,0 +1,41 @@
+<template>
+  <div class="page-wrapper @PAGE_CLASS_NAME">
+    <div class="wrapper-padding">
+      <input class="button" type="button" onclick="onBtnClick" value="倾城之链" />
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    private: {
+    },
+    protected: {
+    },
+
+    onInit () {
+    },
+    onReady () {
+    },
+    onShow () {
+      APP_STATISTICS.page_show(this)
+    },
+    onHide() {
+      APP_STATISTICS.page_hide(this)
+    },
+    onMenuPress () {
+      this.$app.$def.showMenu()
+    },
+
+    /* -------------------SelfCustomEvent------------------ */
+    onBtnClick () {
+      $utils.route2theUrl('https://nicelinks.site/explore/all?utm_source=quickapp')
+    }
+  }
+</script>
+
+<style lang="less">
+@import './../../assets/styles/style.less';
+.@PAGE_CLASS_NAME{
+}
+</style>
