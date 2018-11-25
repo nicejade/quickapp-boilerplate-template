@@ -11,6 +11,7 @@
     "watch": "hap watch",
     "build": "hap build",
     "postinstall": "hap postinstall",
+    "gen": "node ./command/gen/index.js",
     "debug": "hap debug",
     "release": "hap release",
     "commit": "git add . && git commit -m '✨ functional update' && git push",
