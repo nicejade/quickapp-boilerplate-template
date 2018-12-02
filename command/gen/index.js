@@ -13,32 +13,57 @@ String.prototype.firstUpperCase = function() {
     return $1.toLowerCase()
   })
 }
-
-if (!newFolderName) {
-  return console.warn(`⚠️ Please enter the name of the page you want to create.`)
+const resolve = dir => {
+  return path.join(__dirname, '../..', dir)
 }
 
-const folderNameReg = /^[A-Z][[A-Za-z0-9]+$/
-if (!folderNameReg.test(newFolderName)) {
-  return console.warn(`⚠️ Please enter the standard Folder name. Eg: XyzAbcde.`)
+function createNewPage() {
+  const mReg = new RegExp('@PAGE_CLASS_NAME', 'g')
+  const pageContent = fs.readFileSync(`${__dirname}/template.ux`, 'UTF-8')
+  const rootClassName = newFolderName
+    .firstUpperCase()
+    .replace(/([A-Z])/g, '-$1')
+    .toLowerCase()
+  const newContent = pageContent.replace(mReg, rootClassName)
+
+  fs.mkdirSync(newFolderPath, 0777)
+  fs.writeFile(`${newFolderPath}/index.ux`, newContent, error => {
+    if (error) throw `Something went wrong: ${error}`
+  })
 }
 
-const newFolderPath = path.join(__dirname, `../../src/pages/${newFolderName}`)
-const isExist = fs.existsSync(newFolderPath)
-
-if (isExist) {
-  return console.warn(`⚠️ ${newFolderName} already exists in the /src/pages/ directory.`)
+function saveRoute2Manifest() {
+  const manifestPath = resolve('/src/manifest.json')
+  let manifestConf = fs.readFileSync(manifestPath, 'UTF-8')
+  manifestConf = JSON.parse(manifestConf)
+  const routerPages = manifestConf.router.pages
+  routerPages[`pages/${newFolderName}`] = {
+    component: 'index'
+  }
+  manifestConf = JSON.stringify(manifestConf, null, 2)
+  fs.writeFile(manifestPath, manifestConf, error => {
+    if (error) throw `Something went wrong[@saveRoute2Manifest]: ${error}`
+  })
 }
 
-const mReg = new RegExp('@PAGE_CLASS_NAME', 'g')
-const pageContent = fs.readFileSync(`${__dirname}/template.ux`, 'UTF-8')
-const rootClassName = newFolderName
-  .firstUpperCase()
-  .replace(/([A-Z])/g, '-$1')
-  .toLowerCase()
-const newContent = pageContent.replace(mReg, rootClassName)
+function main() {
+  if (!newFolderName) {
+    return console.warn(`⚠️ Please enter the name of the page you want to create.`)
+  }
 
-fs.mkdirSync(newFolderPath, 0777)
-fs.writeFile(`${newFolderPath}/index.ux`, newContent, error => {
-  if (error) throw `Something went wrong: ${error}`
-})
+  const folderNameReg = /^[A-Z][[A-Za-z0-9]+$/
+  if (!folderNameReg.test(newFolderName)) {
+    return console.warn(`⚠️ Please enter the standard Folder name. Eg: XyzAbcde.`)
+  }
+
+  const newFolderPath = path.join(__dirname, `../../src/pages/${newFolderName}`)
+  const isExist = fs.existsSync(newFolderPath)
+
+  if (isExist) {
+    return console.warn(`⚠️ ${newFolderName} already exists in the /src/pages/ directory.`)
+  }
+  createNewPage()
+  saveRoute2Manifest()
+}
+
+main()
