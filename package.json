@@ -39,7 +39,7 @@
     "css-what": "^2.1.0",
     "eslint-config-prettier": "^3.1.0",
     "eslint-plugin-prettier": "^3.0.0",
-    "hap-toolkit": "0.0.37",
+    "hap-toolkit": "0.0.38",
     "husky": "^1.0.0",
     "koa": "^2.3.0",
     "koa-body": "^2.5.0",
