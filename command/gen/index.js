@@ -17,7 +17,7 @@ const resolve = dir => {
   return path.join(__dirname, '../..', dir)
 }
 
-function createNewPage() {
+function createNewPage(newFolderPath) {
   const mReg = new RegExp('@PAGE_CLASS_NAME', 'g')
   const pageContent = fs.readFileSync(`${__dirname}/template.ux`, 'UTF-8')
   const rootClassName = newFolderName
@@ -62,7 +62,7 @@ function main() {
   if (isExist) {
     return console.warn(`⚠️ ${newFolderName} already exists in the /src/pages/ directory.`)
   }
-  createNewPage()
+  createNewPage(newFolderPath)
   saveRoute2Manifest()
 }
 
