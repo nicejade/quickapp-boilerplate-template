@@ -5,6 +5,7 @@
 
 const fs = require('fs')
 const path = require('path')
+const colors = require('colors')
 
 const newFolderName = process.argv[2]
 
@@ -15,6 +16,10 @@ String.prototype.firstUpperCase = function() {
 }
 const resolve = dir => {
   return path.join(__dirname, '../..', dir)
+}
+
+const successExecPrint = msg => {
+  console.log(colors.green(`✓ `) + colors.cyan(`${msg} `) + colors.green('task has been successfully executed.'))
 }
 
 function createNewPage(newFolderPath) {
@@ -30,9 +35,10 @@ function createNewPage(newFolderPath) {
   fs.writeFile(`${newFolderPath}/index.ux`, newContent, error => {
     if (error) throw `Something went wrong: ${error}`
   })
+  successExecPrint('Create New Page')
 }
 
-function saveRoute2Manifest() {
+function saveRouter2Manifest() {
   const manifestPath = resolve('/src/manifest.json')
   let manifestConf = fs.readFileSync(manifestPath, 'UTF-8')
   manifestConf = JSON.parse(manifestConf)
@@ -42,28 +48,29 @@ function saveRoute2Manifest() {
   }
   manifestConf = JSON.stringify(manifestConf, null, 2)
   fs.writeFile(manifestPath, manifestConf, error => {
-    if (error) throw `Something went wrong[@saveRoute2Manifest]: ${error}`
+    if (error) throw `Something went wrong[@saveRouter2Manifest]: ${error}`
   })
+  successExecPrint('Save Router Into Manifest')
 }
 
 function main() {
   if (!newFolderName) {
-    return console.warn(`⚠️ Please enter the name of the page you want to create.`)
+    return console.warn(`⚠️  Please enter the name of the page you want to create.`.underline.red)
   }
 
   const folderNameReg = /^[A-Z][[A-Za-z0-9]+$/
   if (!folderNameReg.test(newFolderName)) {
-    return console.warn(`⚠️ Please enter the standard Folder name. Eg: XyzAbcde.`)
+    return console.warn(`⚠️  Please enter the standard Folder name. Eg: XyzAbcde.`.underline.red)
   }
 
   const newFolderPath = path.join(__dirname, `../../src/pages/${newFolderName}`)
   const isExist = fs.existsSync(newFolderPath)
 
   if (isExist) {
-    return console.warn(`⚠️ ${newFolderName} already exists in the /src/pages/ directory.`)
+    return console.warn(`⚠️  ${newFolderName} already exists in the /src/pages/ directory.`.underline.red)
   }
   createNewPage(newFolderPath)
-  saveRoute2Manifest()
+  saveRouter2Manifest()
 }
 
 main()
