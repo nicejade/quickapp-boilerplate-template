@@ -1,6 +1,6 @@
 <template>
   <div class="nice-particle">
-    <canvas show="{{isShowFlag}}" id="waterCanvas" class="water-canvas"></canvas>
+    <canvas show="{{isShowFlag}}" id="water-canvas" class="water-canvas"></canvas>
   </div>
 </template>
 
@@ -19,13 +19,12 @@
     [17, 141, 240, 0.3],
     [31, 138, 255, 0.3]
   ]
+  let gCanvas = null
+  let gContext = null
   export default {
-    // 页面级组件的数据模型，影响传入数据的覆盖机制：private内定义的属性不允许被覆盖;
-    protected: {
-      mCanvas: null,
-      mContext: null,
-      mWidth: 800,
-      mHeight: 300,
+    data: {
+      // mCanvas: null,
+      // mContext: null,
       randomIndex: 0,
       drawTimerId: null,
       isShowFlag: false
@@ -33,16 +32,11 @@
 
     onInit () {
     },
-
+    
+    /* 子组件内无 onShow 生命周期函数 */
     onReady () {
-      setTimeout(() => {
-        this.isShowFlag = true
-        this.startNiceDraw()
-      }, 10)
-    },
-
-    onShow () {
-      this.drawParticleCanvas()
+      this.isShowFlag = true
+      this.startNiceDraw()
     },
 
     onHide () {
@@ -50,10 +44,11 @@
     },
 
     startNiceDraw () {
-      this.mCanvas = this.$element('waterCanvas')
-      this.mContext =this.mCanvas.getContext('2d');
-      this.mCanvas.width = 800;
-      this.mCanvas.height = 400;
+      /* Fix: 如果此处赋值给成员成员(this.mCanvas)，则会导致堆栈溢出问题；*/
+      gCanvas = this.$element('water-canvas')
+      gContext = gCanvas.getContext('2d')
+      gCanvas.width = 800
+      gCanvas.height = 400
       this.randomIndex = $utils.getRandomInt(0, 10)
 
       this.drawTimerId = $utils.setInterval(() => {
@@ -61,13 +56,13 @@
       }, 30)
     },
     drawParticleCanvas() {
-      this.mContext.globalCompositeOperation = "source-over";
-      this.mContext.fillStyle = "rgb(0, 0, 0)";
-      this.mContext.fillRect(0, 0, this.mCanvas.width, this.mCanvas.height);
-      this.mContext.globalCompositeOperation = "lighter";
+      gContext.globalCompositeOperation = "source-over";
+      gContext.fillStyle = "rgb(0, 0, 0)";
+      gContext.fillRect(0, 0, gCanvas.width, gCanvas.height);
+      gContext.globalCompositeOperation = "lighter";
       tim = new Date().getTime() / 10;
       const colorStr = colorRandomList[this.randomIndex].join(',')
-      this.mContext.strokeStyle = this.mContext.fillStyle = `hsla(${colorStr})`;
+      gContext.strokeStyle = gContext.fillStyle = `hsla(${colorStr})`;
 
       bai = 0.6 + Math.sin(tim / 5) * 0.2;
       hei = 0.9 + Math.sin(tim / 100) * 0.3;
@@ -118,12 +113,11 @@
           y1 = z * b * 200 - hei * 200 + 150;
           p2.push([x1, y1]);
         }
-        this.mContext.beginPath();
-        for (a = 0; a < p2.length; a++) this.mContext.lineTo(p2[a][0], p2[a][1]);
-        this.mContext.closePath();
-        this.mContext.stroke();
+        gContext.beginPath();
+        for (a = 0; a < p2.length; a++) gContext.lineTo(p2[a][0], p2[a][1]);
+        gContext.closePath();
+        gContext.stroke();
       }
-      // requestAnimationFrame(this.drawParticleCanvas)
     },
     nami (r, s) {
       var a = Math.sin(r * 2 - tim / 13 + s * 13) / 20 + Math.sin(r * 5 - tim / 17 + s * 13) / 20 + Math.sin(r * 7 - tim / 19 + s * 13) / 40;
@@ -143,12 +137,12 @@
   .nice-particle {
     .flex-box-mixins(column, center, center);
     width: 100%;
-    height: 369px;
+    height: 360px;
     background-color: @black;
     .water-canvas {
       background-color: @black;
       width: 400px;
-      height: 369px;
+      height: 360px;
     }
   }
   </style>
