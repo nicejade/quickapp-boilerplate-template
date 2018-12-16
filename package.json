@@ -20,8 +20,8 @@
     "eslint:fix": "eslint src/**/**/*.js --fix",
     "eslint:code": "eslint src/**/**/*.js",
     "format:code": "prettier-eslint --write \"src/**/**/*.js\" \"src/**/**/*.less\"",
-    "prettier": "prettier --write 'src/**/**/*.js'",
-    "prettier-watch": "onchange '**/*.md' -- prettier --write {{changed}}"
+    "prettier": "prettier --write 'src/**/*.js' 'src/**/*.ux'",
+    "prettier-watch": "onchange '**/*.md' 'src/**/*.js' 'src/**/*.ux' -- prettier --write {{changed}}"
   },
   "dependencies": {
     "md5": "^2.2.1"
@@ -56,6 +56,7 @@
     "portfinder": "^1.0.17",
     "prettier": "^1.14.3",
     "prettier-eslint-cli": "^4.7.1",
+    "prettier-plugin-ux": "^0.0.1",
     "socket.io": "^2.1.0",
     "webpack": "4.26.1"
   },

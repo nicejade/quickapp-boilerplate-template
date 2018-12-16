@@ -5150,6 +5150,10 @@ prettier-linter-helpers@^1.0.0:
   dependencies:
     fast-diff "^1.1.2"
 
+prettier-plugin-ux@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.npmjs.org/prettier-plugin-ux/-/prettier-plugin-ux-0.0.1.tgz#9c4af1062ff60c9032a347432cb5e6887e404449"
+
 prettier@^1.14.3:
   version "1.14.3"
   resolved "http://registry.npm.taobao.org/prettier/download/prettier-1.14.3.tgz#90238dd4c0684b7edce5f83b0fb7328e48bd0895"
