@@ -32,102 +32,104 @@
 </template>
 
 <script>
-  import webview from '@system.webview'
-  import router from '@system.router'
-  import app from '@system.app'
-  const appInfo = app.getInfo()
+import webview from '@system.webview'
+import router from '@system.router'
+import app from '@system.app'
+const appInfo = app.getInfo()
 
-  export default {
-    // 页面级组件的数据模型，影响传入数据的覆盖机制：private内定义的属性不允许被覆盖
-    private: {
-      totalLinksCount: 0,
-      niceJumpLink: 'https://nicelinks.site/explore/all?from=quickapp'
-    },
+export default {
+  // 页面级组件的数据模型，影响传入数据的覆盖机制：private内定义的属性不允许被覆盖
+  private: {
+    totalLinksCount: 0,
+    niceJumpLink: 'https://nicelinks.site/explore/all?from=quickapp'
+  },
 
-    protected: {
-      title: appInfo.name,
-      icon: appInfo.icon,
-      currentTime: ''
-    },
+  protected: {
+    title: appInfo.name,
+    icon: appInfo.icon,
+    currentTime: ''
+  },
 
-    onInit () {
-    },
+  onInit() {},
 
-    onReady () {
-    },
+  onReady() {},
 
-    onShow () {
-      APP_STATISTICS.page_show(this)
-      /**
-       * @desc: 调用 API：global.$apis || this.$app._def.$apis (前者更简洁);
-       */
-      const params = { active: true }
-      global.$apis.links.getAllLinksCount(params).then(result => {
+  onShow() {
+    APP_STATISTICS.page_show(this)
+    /**
+     * @desc: 调用 API：global.$apis || this.$app._def.$apis (前者更简洁);
+     */
+    const params = { active: true }
+    global.$apis.links
+      .getAllLinksCount(params)
+      .then(result => {
         this.totalLinksCount = result
-        this.currentTime = (new Date($utils.getCurrentTime())).Format()
-      }).catch((error) => {
+        this.currentTime = new Date($utils.getCurrentTime()).Format()
+      })
+      .catch(error => {
         console.log(error)
       })
-    },
+  },
 
-    onHide() {
-      APP_STATISTICS.page_hide(this)
-    },
+  onHide() {
+    APP_STATISTICS.page_hide(this)
+  },
 
-    // (监听菜单按钮动作)当用户点击菜单按钮时触发
-    onMenuPress () {
-      this.$app.$def.showMenu()
-    },
+  // (监听菜单按钮动作)当用户点击菜单按钮时触发
+  onMenuPress() {
+    this.$app.$def.showMenu()
+  },
 
-    /* -------------------SelfCustomEvent------------------ */
-    onOpenWebsiteClick () {
-      webview.loadUrl({
-        url: this.niceJumpLink
-      })
-    },
+  /* -------------------SelfCustomEvent------------------ */
+  onOpenWebsiteClick() {
+    webview.loadUrl({
+      url: this.niceJumpLink
+    })
+  },
 
-    onGotoDetailClick () {
-      router.push({
-        uri: '/pages/About'
-      })
-    }
+  onGotoDetailClick() {
+    router.push({
+      uri: '/pages/About'
+    })
   }
+}
 </script>
 
 <style lang="less">
-  @import './../../assets/styles/style.less';
-  .main-page {
+@import './../../assets/styles/style.less';
+.main-page {
+  .flex-box-mixins(column, center, center);
+  width: 100%;
+  .nice-detail {
+    height: 100 * @size-factor;
     .flex-box-mixins(column, center, center);
-    width: 100%;
-    .nice-detail {
-      height: 100 * @size-factor;;
-      .flex-box-mixins(column, center, center);
-    }
-    .datetime {
-      color: @jade;
-    }
-    .find-more {
-      background-color: @black;
-      .title, .desc {
-        color: @white;
-      }
-    }
-    .share-more {
-      color: @black;
-      background-color: @white;
-    }
-    .countup-area {
-      .flex-box-mixins(column, center, center);
-      width: 100%;
-      height: 50 * @size-factor;
-      background-color: @white-grey;
-      .countup-text {
-        color: @black;
-        font-size: 6 * @size-factor;
-      }
-      .countup {
-        font-size: 10 * @size-factor;
-      }
+  }
+  .datetime {
+    color: @jade;
+  }
+  .find-more {
+    background-color: @black;
+    .title,
+    .desc {
+      color: @white;
     }
   }
+  .share-more {
+    color: @black;
+    background-color: @white;
+  }
+  .countup-area {
+    .flex-box-mixins(column, center, center);
+    width: 100%;
+    height: 50 * @size-factor;
+    background-color: @white-grey;
+    .countup-text {
+      color: @black;
+      font-size: 6 * @size-factor;
+    }
+    .countup {
+      font-size: 10 * @size-factor;
+    }
+  }
+}
 </style>

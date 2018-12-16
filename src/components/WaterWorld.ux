@@ -5,144 +5,146 @@
 </template>
 
 <script>
-  let tim, bai, a, b, c, s, p, r, x, y, z, x1, y1, max, p2, han, h, pt, hei;
-  const colorRandomList = [
-    [87, 209, 201, 0.3],
-    [221, 10, 53, 0.3],
-    [66, 33, 142, 0.3],
-    [43, 187, 216, 0.3],
-    [92,242,232, 0.3],
-    [135,226,147, 0.3],
-    [0, 255, 0, 0.3],
-    [255, 0, 0, 0.3],
-    [245, 223, 101, 0.3],
-    [17, 141, 240, 0.3],
-    [31, 138, 255, 0.3]
-  ]
-  let gCanvas = null
-  let gContext = null
-  export default {
-    data: {
-      // mCanvas: null,
-      // mContext: null,
-      randomIndex: 0,
-      drawTimerId: null,
-      isShowFlag: false
-    },
+let tim, bai, a, b, c, s, p, r, x, y, z, x1, y1, max, p2, han, h, pt, hei
+const colorRandomList = [
+  [87, 209, 201, 0.3],
+  [221, 10, 53, 0.3],
+  [66, 33, 142, 0.3],
+  [43, 187, 216, 0.3],
+  [92, 242, 232, 0.3],
+  [135, 226, 147, 0.3],
+  [0, 255, 0, 0.3],
+  [255, 0, 0, 0.3],
+  [245, 223, 101, 0.3],
+  [17, 141, 240, 0.3],
+  [31, 138, 255, 0.3]
+]
+let gCanvas = null
+let gContext = null
+export default {
+  data: {
+    // mCanvas: null,
+    // mContext: null,
+    randomIndex: 0,
+    drawTimerId: null,
+    isShowFlag: false
+  },
 
-    onInit () {
-    },
-    
-    /* 子组件内无 onShow 生命周期函数 */
-    onReady () {
-      this.isShowFlag = true
-      this.startNiceDraw()
-    },
+  onInit() {},
 
-    onHide () {
-      $utils.clearInterval(this.drawTimerId)
-    },
+  /* 子组件内无 onShow 生命周期函数 */
+  onReady() {
+    this.isShowFlag = true
+    this.startNiceDraw()
+  },
 
-    startNiceDraw () {
-      /* Fix: 如果此处赋值给成员成员(this.mCanvas)，则会导致堆栈溢出问题；*/
-      gCanvas = this.$element('water-canvas')
-      gContext = gCanvas.getContext('2d')
-      gCanvas.width = 800
-      gCanvas.height = 400
-      this.randomIndex = $utils.getRandomInt(0, 10)
+  onHide() {
+    $utils.clearInterval(this.drawTimerId)
+  },
 
-      this.drawTimerId = $utils.setInterval(() => {
-        this.drawParticleCanvas()
-      }, 30)
-    },
-    drawParticleCanvas() {
-      gContext.globalCompositeOperation = "source-over";
-      gContext.fillStyle = "rgb(0, 0, 0)";
-      gContext.fillRect(0, 0, gCanvas.width, gCanvas.height);
-      gContext.globalCompositeOperation = "lighter";
-      tim = new Date().getTime() / 10;
-      const colorStr = colorRandomList[this.randomIndex].join(',')
-      gContext.strokeStyle = gContext.fillStyle = `hsla(${colorStr})`;
+  startNiceDraw() {
+    /* Fix: 如果此处赋值给成员成员(this.mCanvas)，则会导致堆栈溢出问题；*/
+    gCanvas = this.$element('water-canvas')
+    gContext = gCanvas.getContext('2d')
+    gCanvas.width = 800
+    gCanvas.height = 400
+    this.randomIndex = $utils.getRandomInt(0, 10)
 
-      bai = 0.6 + Math.sin(tim / 5) * 0.2;
-      hei = 0.9 + Math.sin(tim / 100) * 0.3;
+    this.drawTimerId = $utils.setInterval(() => {
+      this.drawParticleCanvas()
+    }, 30)
+  },
+  drawParticleCanvas() {
+    gContext.globalCompositeOperation = 'source-over'
+    gContext.fillStyle = 'rgb(0, 0, 0)'
+    gContext.fillRect(0, 0, gCanvas.width, gCanvas.height)
+    gContext.globalCompositeOperation = 'lighter'
+    tim = new Date().getTime() / 10
+    const colorStr = colorRandomList[this.randomIndex].join(',')
+    gContext.strokeStyle = gContext.fillStyle = `hsla(${colorStr})`
 
-      pt = [];
-      for (c = 0; c < 180; c++) {
-        s = (c + 1) / 180;
-        han = Math.cos(s * Math.PI / 2);
-        h = Math.sin(s * Math.PI / 2);
-        s = 1 - s;
-        p = [];
-        max = (100 * han) | 0;
-        r = 0;
-        for (a = 0; a < max; a++) {
-          x = Math.cos(r) * han;
-          y = Math.sin(r) * han;
-          z = this.nami(r, s);
-          x -= z * s;
-          p.push([x, y, hei + z * s + h]);
-          r += Math.PI * 2 / max;
-        }
-        pt.push(p);
+    bai = 0.6 + Math.sin(tim / 5) * 0.2
+    hei = 0.9 + Math.sin(tim / 100) * 0.3
+
+    pt = []
+    for (c = 0; c < 180; c++) {
+      s = (c + 1) / 180
+      han = Math.cos((s * Math.PI) / 2)
+      h = Math.sin((s * Math.PI) / 2)
+      s = 1 - s
+      p = []
+      max = (100 * han) | 0
+      r = 0
+      for (a = 0; a < max; a++) {
+        x = Math.cos(r) * han
+        y = Math.sin(r) * han
+        z = this.nami(r, s)
+        x -= z * s
+        p.push([x, y, hei + z * s + h])
+        r += (Math.PI * 2) / max
       }
-      for (c = 0; c < 100; c++) {
-        s = (c + 1) / 100;
-        p = [];
-        max = 100 * s;
-        r = 0;
-        for (a = 0; a < max; a++) {
-          x = Math.cos(r) * s;
-          y = Math.sin(r) * s;
-          z = this.nami(r, s);
-          x -= z * s;
-          p.push([x, y, hei + z * s]);
-          r += Math.PI * 2 / max;
-        }
-        pt.push(p);
-      }
-      for (c = 0; c < pt.length; c++) {
-        p = pt[c];
-        p2 = [];
-        for (a = 0; a < p.length; a++) {
-          x = p[a][0];
-          y = p[a][1];
-          z = p[a][2];
-          b = Math.pow(1.5, y / 2);
-          x1 = x * b * 150 + 200;
-          y1 = z * b * 200 - hei * 200 + 150;
-          p2.push([x1, y1]);
-        }
-        gContext.beginPath();
-        for (a = 0; a < p2.length; a++) gContext.lineTo(p2[a][0], p2[a][1]);
-        gContext.closePath();
-        gContext.stroke();
-      }
-    },
-    nami (r, s) {
-      var a = Math.sin(r * 2 - tim / 13 + s * 13) / 20 + Math.sin(r * 5 - tim / 17 + s * 13) / 20 + Math.sin(r * 7 - tim / 19 + s * 13) / 40;
-      return a * bai;
-    },
-    onBackPress () {
-      $utils.clearInterval(this.drawTimerId)
-    },
-    onDestroy () {
-      $utils.clearInterval(this.drawTimerId)
+      pt.push(p)
     }
+    for (c = 0; c < 100; c++) {
+      s = (c + 1) / 100
+      p = []
+      max = 100 * s
+      r = 0
+      for (a = 0; a < max; a++) {
+        x = Math.cos(r) * s
+        y = Math.sin(r) * s
+        z = this.nami(r, s)
+        x -= z * s
+        p.push([x, y, hei + z * s])
+        r += (Math.PI * 2) / max
+      }
+      pt.push(p)
+    }
+    for (c = 0; c < pt.length; c++) {
+      p = pt[c]
+      p2 = []
+      for (a = 0; a < p.length; a++) {
+        x = p[a][0]
+        y = p[a][1]
+        z = p[a][2]
+        b = Math.pow(1.5, y / 2)
+        x1 = x * b * 150 + 200
+        y1 = z * b * 200 - hei * 200 + 150
+        p2.push([x1, y1])
+      }
+      gContext.beginPath()
+      for (a = 0; a < p2.length; a++) gContext.lineTo(p2[a][0], p2[a][1])
+      gContext.closePath()
+      gContext.stroke()
+    }
+  },
+  nami(r, s) {
+    var a =
+      Math.sin(r * 2 - tim / 13 + s * 13) / 20 +
+      Math.sin(r * 5 - tim / 17 + s * 13) / 20 +
+      Math.sin(r * 7 - tim / 19 + s * 13) / 40
+    return a * bai
+  },
+  onBackPress() {
+    $utils.clearInterval(this.drawTimerId)
+  },
+  onDestroy() {
+    $utils.clearInterval(this.drawTimerId)
   }
+}
 </script>
 
 <style lang="less">
-  @import './../assets/styles/style.less';
-  .nice-particle {
-    .flex-box-mixins(column, center, center);
-    width: 100%;
-    height: 360px;
+@import './../assets/styles/style.less';
+.nice-particle {
+  .flex-box-mixins(column, center, center);
+  width: 100%;
+  height: 360px;
+  background-color: @black;
+  .water-canvas {
     background-color: @black;
-    .water-canvas {
-      background-color: @black;
-      width: 400px;
-      height: 360px;
-    }
+    width: 400px;
+    height: 360px;
   }
-  </style>
+}
+</style>

@@ -36,35 +36,35 @@
 </template>
 
 <script>
-  /**
-   * 默认的菜单页(可自定义)
-   * name 默认为 manifest 文件中的 name 字段
-   * icon 默认为 manifest 文件中的 icon 字段
-   * 若需修改页面中文本，请修改ViewModel private中对应变量
-   * 注意：使用加载器测试`创建桌面快捷方式`功能时，需要进入系统：
-   *  设置->权限管理->开启应用加载器的`桌面快捷方式`权限，才能保存到桌面。
-   *  应用上线后可自动获取`桌面快捷方式`权限；
-   */
-  const appInfo = require('@system.app').getInfo()
-  export default {
-    private: {
-      name: appInfo.name,
-      icon: appInfo.icon,
-      copyright: '© 2018 jeffjade.com'
-    },
-    onInit () {
-      this.$page.setTitleBar({ text: this.name })
-    },
-    onShow(){
-      APP_STATISTICS.page_show(this)
-    },
-    onHide() {
-      APP_STATISTICS.page_hide(this)
-    },
-    createShortcut () {
-      $utils.createShortcut()
-    }
+/**
+ * 默认的菜单页(可自定义)
+ * name 默认为 manifest 文件中的 name 字段
+ * icon 默认为 manifest 文件中的 icon 字段
+ * 若需修改页面中文本，请修改ViewModel private中对应变量
+ * 注意：使用加载器测试`创建桌面快捷方式`功能时，需要进入系统：
+ *  设置->权限管理->开启应用加载器的`桌面快捷方式`权限，才能保存到桌面。
+ *  应用上线后可自动获取`桌面快捷方式`权限；
+ */
+const appInfo = require('@system.app').getInfo()
+export default {
+  private: {
+    name: appInfo.name,
+    icon: appInfo.icon,
+    copyright: '© 2018 jeffjade.com'
+  },
+  onInit() {
+    this.$page.setTitleBar({ text: this.name })
+  },
+  onShow() {
+    APP_STATISTICS.page_show(this)
+  },
+  onHide() {
+    APP_STATISTICS.page_hide(this)
+  },
+  createShortcut() {
+    $utils.createShortcut()
   }
+}
 </script>
 
 <style lang="less">
@@ -72,7 +72,7 @@
 .about-page {
   flex-direction: column;
   align-items: center;
-  .app-icon{
+  .app-icon {
     margin-top: 4 * @size-factor;
     margin-bottom: 0;
   }
@@ -126,4 +126,3 @@
   }
 }
 </style>
-  
