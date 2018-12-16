@@ -6,7 +6,10 @@
       <text class="app-name">{{ title }}</text>
       <image class="app-icon" src="{{icon}}"></image>
       <text class="app-desc desc"><a class="external-link" href="{{ niceJumpLink }}">「倾城之链」</a>，作为一个开放平台，旨在云集全球优秀网站，探索互联网中更广阔的世界；在这里，你可以轻松发现、学习、分享更多有用或有趣的事物。</text>
-      <input class="button" type="button" onclick="onOpenWebsiteClick" value="探索美好" />
+      <div class="btn-area">
+        <input class="button" type="button" onclick="onOpenWebsiteClick" value="探索美好" />
+        <input class="button" type="button" onclick="onGotoDetailClick" value="查看详情" />
+      </div>
     </div>
     <WaterWorld></WaterWorld>
     <div class="nice-detail find-more wrapper-padding">
@@ -27,7 +30,6 @@
       <text class="countup-text">已经收录优质网站个数</text>
       <text class="countup">{{ totalLinksCount }}</text>
     </div>
-    <input class="button" type="button" onclick="onGotoDetailClick" value="查看详情" />
   </div>
 </template>
 
@@ -103,6 +105,14 @@ export default {
   .nice-detail {
     height: 100 * @size-factor;
     .flex-box-mixins(column, center, center);
+    .btn-area {
+      width: 100%;
+      .flex-box-mixins(row, space-between, center);
+      .button {
+        margin-left: 3 * @size-factor;
+        margin-right: 3 * @size-factor;
+      }
+    }
   }
   .datetime {
     color: @jade;
