@@ -28,8 +28,14 @@
         <a class="external-link" href="https://www.jeffjade.com/?utm_source=quickapp-boilerplate-template">晚晴幽草轩</a>出品
       </text>
     </div>
+    <div class="app-detail">
+      <text class="detail-title">推荐应用</text>
+      <text class="detail-content">
+        <a class="external-link" href="hap://app/com.quickapp.nicelinks">倾城之链</a>
+      </text>
+    </div>
     <!-- 创建快捷方式 -->
-    <input class="button" type="button" onclick="createShortcut" value="创建快捷方式" />
+    <input class="button" type="button" onclick="onShortcutClick" value="创建快捷方式" />
     <!-- 版权信息 -->
     <text class="footer">{{ copyright }}</text>
   </div>
@@ -61,7 +67,8 @@ export default {
   onHide() {
     APP_STATISTICS.page_hide(this)
   },
-  createShortcut() {
+  /* -------------------SelfCustomEvent------------------ */
+  onShortcutClick() {
     $utils.createShortcut()
   }
 }
