@@ -3,13 +3,10 @@
     <!-- 应用图标 -->
     <image class="app-icon" src="{{ icon }}"></image>
     <!-- 应用名 -->
-    <text class="app-name">{{name}}</text>
+    <text class="app-name">{{ name }}</text>
     <!-- 应用标签 -->
     <div class="app-tags">
-      <text class="tag">发现</text>
-      <text class="gap">|</text>
-      <text class="tag">学习</text>
-      <text class="gap">|</text>
+      <text class="tag">发现</text> <text class="gap">|</text> <text class="tag">学习</text> <text class="gap">|</text>
       <text class="tag">分享</text>
     </div>
     <!-- 应用描述 -->
@@ -19,13 +16,13 @@
     </text>
     <!-- 应用详情 -->
     <div class="app-detail detail-first">
-      <text class="detail-title">服务类型</text>
-      <text class="detail-content">探究尝试类</text>
+      <text class="detail-title">服务类型</text> <text class="detail-content">探究尝试类</text>
     </div>
     <div class="app-detail">
       <text class="detail-title">主体信息</text>
       <text class="detail-content">
-        <a class="external-link" href="https://www.jeffjade.com/?utm_source=quickapp-boilerplate-template">晚晴幽草轩</a>出品
+        <a class="external-link" href="https://www.jeffjade.com/?utm_source=quickapp-boilerplate-template">晚晴幽草轩</a
+        >出品
       </text>
     </div>
     <div class="app-detail">
