@@ -33,6 +33,7 @@
     "less-loader": "^4.1.0",
     "lint-staged": "^8.1.0",
     "onchange": "^5.2.0",
+    "opn": "^5.4.0",
     "portfinder": "^1.0.20",
     "prettier": "^1.15.3",
     "prettier-plugin-ux": "^0.0.1"
