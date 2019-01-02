@@ -17,8 +17,13 @@ const startServer = () => {
     .then(port => {
       const urls = utils.prepareUrls('http', '0.0.0.0', port)
 
-      shelljs.exec(`hap server --port ${port}`, { async: true })
-      autoOpenBrowser && utils.startBrowserProcess(urls.lanUrlForBrowser)
+      const child = shelljs.exec(`hap server --port ${port}`, { async: true })
+      let isBrowserOpened = false
+      child.stdout.on('data', () => {
+        // 在 hap-toolkit 编译完成后，再自动打开浏览器二维码展示 @2019-01-02；
+        autoOpenBrowser && !isBrowserOpened && utils.startBrowserProcess(urls.lanUrlForBrowser)
+        isBrowserOpened = true
+      })
 
       printInfoAtTheTerminal(urls)
     })
