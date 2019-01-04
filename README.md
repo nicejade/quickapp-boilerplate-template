@@ -25,7 +25,7 @@
   <a href="https://nice.lovejade.cn/zh/article/quickapp-boilerplate-template.html">
     <img src="https://img.shields.io/badge/chat-on%20blog-brightgreen.svg" alt="Chat On My Blog">
   </a>
-  <a href="https://about.me/nicejade"><img src="https://img.shields.io/badge/Author-nicejade-%23a696c8.svg" alt="Author nicejade"></a>
+  <a href="https://aboutme.lovejade.cn/?from=github"><img src="https://img.shields.io/badge/Author-nicejade-%23a696c8.svg" alt="Author nicejade"></a>
 </div>
 
 ## 目标与哲学
@@ -94,10 +94,15 @@ yarn gen YourPageName
 - [x] **新增文件监听命令**：引入 [onchange](https://github.com/Qard/onchange) 依赖来监听文件变化；使得在开发时，运行 `yarn prettier-watch` 命令，即可对所修改的 `*.md` `*.ux` `*.js` 等文件，进行 **Prettier** 格式化，从而大幅度提升编写效率。
 - [ ] ... ...
 
+## 内置命令
+
+
+
+
 ## 相关链接
 
 - [**倾城之链**](https://nicelinks.site?from=github)
-- [About Me](https://aboutme.lovejade.cn/??from=github)
+- [About Me](https://aboutme.lovejade.cn/?from=github)
 - [个人博客](https://jeffjade.com/nicelinks)
 - [辅助博客](https://blog.lovejade.cn/)
 - [新浪微博](https://weibo.com/jeffjade)
