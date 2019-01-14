@@ -96,8 +96,16 @@ yarn gen YourPageName
 
 ## 内置命令
 
-
-
+|  命令 | 描述  | 备注 |
+|---|---|---|
+| `yarn start`  | 开启服务(server)和监听(watch)  | 附魔[多步优化](https://nice.lovejade.cn/zh/article/quickapp-boilerplate-template.html#%E6%94%B9%E8%BF%9B%E4%BC%98%E5%8A%BF)，一键开启开发，强烈推荐 ✔️|
+| `yarn server`  | 开启服务(server)  | 如不嫌麻烦，可使用，不推荐 |
+| `yarn watch`  | 开启监听(watch)  | 如不嫌麻烦，可使用，不推荐 |
+| `yarn build ` | 编译打包，生成 `rpk`包  | 对内置 `hap build` 命令的转接 |
+| `yarn release ` | 生成 `rpk`包并增加签名  | 对内置 `hap release` 命令的转接  |
+| `yarn gen `  | 新增「快应用」页面 | 助你高效生成页面，模版可自定义，推荐 ✓|
+| `yarn prettier`  | 一键美化代码(js/css/less/ux)  | 实在是团队开发好帮手，推荐 ✓ |
+| `yarn prettier-watch`  | 对变化代码文件格式、实时美化 | 极大提升代码编写效率，强烈推荐 ✔️|
 
 ## 相关链接
 
@@ -109,8 +117,8 @@ yarn gen YourPageName
 - [知乎主页](https://www.zhihu.com/people/yang-qiong-pu/)
 - [简书主页](https://www.jianshu.com/u/9aae3d8f4c3d)
 - [SegmentFault](https://segmentfault.com/u/jeffjade)
-- [Twitter](https://twitter.com/jeffjade2)
-- [Facebook](https://www.facebook.com/yang.gang.jade)
+- [Twitter](https://twitter.com/nicejadeyang)
+- [Facebook](https://www.facebook.com/nice.jade.yang)
 
 | 微信公众号 | 前端微信群 | 推荐 Web 应用 |
 | --- | --- | --- |
