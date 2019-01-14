@@ -10,11 +10,15 @@ const hook2global = global.__proto__ || global
 hook2global.$apis = $apis
 hook2global.$utils = $utils
 
+/* 注入 runtime/regenerator，以增加对 async/await 的支持 */
+hook2global.regeneratorRuntime = require('@babel/runtime/regenerator')
+
 export default {
   $apis: $apis,
   showMenu: $utils.showMenu,
   createShortcut: $utils.createShortcut,
-  onCreate() {
+  // 此处的 async 只在于用法的一种示范，无实际意义；
+  async onCreate() {
     APP_STATISTICS.app_sta_init(this)
   }
 }
