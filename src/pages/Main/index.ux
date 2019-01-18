@@ -80,7 +80,10 @@ export default {
         this.currentTime = new Date($utils.getCurrentTime()).Format()
       })
       .catch(error => {
-        console.log(error)
+        $utils.showToast(`Something Error: ${error}`)
+      })
+      .finally(() => {
+        $utils.showToast(`数据请求已完成`)
       })
   },
 
