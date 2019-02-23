@@ -19,7 +19,7 @@
     "eslint:fix": "eslint src/**/**/*.js --fix",
     "eslint:code": "eslint src/**/**/*.js",
     "format:code": "prettier-eslint --write \"src/**/**/*.js\" \"src/**/**/*.less\"",
-    "prettier": "prettier --write 'src/**/*.js' 'src/**/*.ux'",
+    "prettier": "node ./command/selfCloseInputTag.js && prettier --write 'src/**/*.js' 'src/**/*.ux'",
     "prettier-watch": "onchange '**/*.md' 'src/**/*.js' 'src/**/*.ux' -- prettier --write {{changed}}"
   },
   "devDependencies": {
