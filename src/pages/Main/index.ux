@@ -1,5 +1,3 @@
-<import name="WaterWorld" src="./../../components/WaterWorld"></import>
-
 <template>
   <div class="page-wrapper main-page">
     <div class="nice-detail wrapper-padding">
@@ -43,6 +41,8 @@
     </div>
   </div>
 </template>
+
+<import name="WaterWorld" src="@components/WaterWorld"></import>
 
 <script>
 import webview from '@system.webview'
