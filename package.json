@@ -19,7 +19,7 @@
     "eslint:fix": "eslint src/**/**/*.js --fix",
     "eslint:code": "eslint src/**/**/*.js",
     "format:code": "prettier-eslint --write \"src/**/**/*.js\" \"src/**/**/*.less\"",
-    "prettier": "node ./command/selfCloseInputTag.js && prettier --write 'src/**/*.js' 'src/**/*.ux'",
+    "prettier": "node ./command/selfCloseInputTag.js && prettier --write \"src/**/*.{js,ux,qxml}\"",
     "prettier-watch": "onchange '**/*.md' 'src/**/*.js' 'src/**/*.ux' -- prettier --write {{changed}}"
   },
   "devDependencies": {
@@ -36,7 +36,7 @@
     "opn": "^5.4.0",
     "portfinder": "^1.0.20",
     "prettier": "^1.15.3",
-    "prettier-plugin-ux": "^0.1.0"
+    "prettier-plugin-ux": "0.3.0"
   },
   "husky": {
     "hooks": {
