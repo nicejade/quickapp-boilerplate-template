@@ -23,11 +23,13 @@
     "prettier-watch": "onchange '**/*.md' 'src/**/*.js' 'src/**/*.ux' -- prettier --write {{changed}}"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-jsx": "^7.2.0",
     "address": "^1.0.3",
+    "babel-loader": "^8.0.6",
     "concurrently": "^4.1.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-prettier": "^3.0.0",
-    "hap-toolkit": "0.1.0",
+    "hap-toolkit": "0.4.7",
     "husky": "^1.2.1",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
