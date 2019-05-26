@@ -42,7 +42,7 @@
   </div>
 </template>
 
-<import name="WaterWorld" src="@components/WaterWorld"></import>
+<import name="WaterWorld" src="./../../components/WaterWorld"></import>
 
 <script>
 import webview from '@system.webview'
