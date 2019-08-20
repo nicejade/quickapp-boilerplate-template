@@ -18,9 +18,9 @@
     "precommit-msg": "echo '🚧 start pre-commit checks...' && exit 0",
     "eslint:fix": "eslint src/**/**/*.js --fix",
     "eslint:code": "eslint src/**/**/*.js",
-    "format:code": "prettier-eslint --write \"src/**/**/*.js\" \"src/**/**/*.less\"",
+    "format:code": "prettier-eslint --write \"src/**/**/*.{js,ux,less,scss,css}\"",
     "prettier": "node ./command/selfCloseInputTag.js && prettier --write \"src/**/*.{js,ux,qxml}\"",
-    "prettier-watch": "onchange '**/*.md' 'src/**/*.js' 'src/**/*.ux' -- prettier --write {{changed}}"
+    "watcher": "onchange '**/*.md' \"src/**/**/*.{js,ux,less,scss,css}\" -- prettier --write {{changed}}"
   },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.2.0",
