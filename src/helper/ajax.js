@@ -2,6 +2,7 @@
 
 import $fetch from '@system.fetch'
 import $utils from './utils'
+const prompt = require('@system.prompt')
 
 Promise.prototype.finally = function(callback) {
   const P = this.constructor
@@ -24,8 +25,10 @@ function requestHandle(params) {
       })
       .then(response => {
         const result = response.data
-        const content = JSON.parse(result.data)
+        $utils.setCurrentTime(result.headers && result.headers.Date)
+
         /* @desc: 可跟具体不同业务接口数据，返回你所需要的部分，使得使用尽可能便捷 */
+        const content = JSON.parse(result.data)
         content.success ? resolve(content.value) : resolve(content.message)
       })
       .catch((error, code) => {

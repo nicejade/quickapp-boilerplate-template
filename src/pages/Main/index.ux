@@ -83,7 +83,7 @@ export default {
         $utils.showToast(`Something Error: ${error}`)
       })
       .finally(() => {
-        $utils.showToast(`数据请求已完成`)
+        // $utils.showToast(`数据请求已完成`)
       })
   },
 
