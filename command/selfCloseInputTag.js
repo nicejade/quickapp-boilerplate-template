@@ -24,7 +24,7 @@ const main = codePath => {
 
 const matchAndReplace = path => {
   const pageContent = fs.readFileSync(path, 'UTF-8')
-  const newContent = pageContent.replace(/(<[\s\S]*?input\b[^/]*?)>[\s\S]*?<\/input>/gm, '$1 />')
+  const newContent = pageContent.replace(/(<)([\s]*?)(input\b[^\/]*?)>[\s\S]*?<\/input>/gm, '$1$3 />')
   fs.writeFile(path, newContent, error => {
     if (error) throw `Something went wrong: ${error}`
   })
