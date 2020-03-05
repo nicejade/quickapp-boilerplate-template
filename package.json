@@ -30,7 +30,7 @@
     "concurrently": "^4.1.2",
     "eslint-config-prettier": "^6.1.0",
     "eslint-plugin-prettier": "^3.1.0",
-    "hap-toolkit": "0.6.1",
+    "hap-toolkit": "0.6.13",
     "husky": "^3.0.4",
     "less": "^3.10.1",
     "less-loader": "^5.0.0",
