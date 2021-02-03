@@ -69,19 +69,6 @@ function route2aboutPage() {
 
 export default {
   createShortcut,
-  showMenu() {
-    const itemFuncMapping = [createShortcut, call3thPartyShare, route2aboutPage, null]
-    prompt.showContextMenu({
-      itemList: ['保存桌面', '分享', '关于', '取消'],
-      success: ret => {
-        if (itemFuncMapping[ret.index]) {
-          itemFuncMapping[ret.index]()
-        } else {
-          // do nothing (取消)
-        }
-      }
-    })
-  },
 
   showToast(message = '', duration = 0) {
     if (!message) return

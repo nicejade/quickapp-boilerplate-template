@@ -7,35 +7,28 @@
 </template>
 
 <script>
-  export default {
-    private: {
-    },
-    protected: {
-    },
+export default {
+  private: {},
+  protected: {},
 
-    onInit () {
-    },
-    onReady () {
-    },
-    onShow () {
-      APP_STATISTICS.page_show(this)
-    },
-    onHide() {
-      APP_STATISTICS.page_hide(this)
-    },
-    onMenuPress () {
-      this.$app.$def.showMenu()
-    },
+  onInit() {},
+  onReady() {},
+  onShow() {
+    APP_STATISTICS.page_show(this)
+  },
+  onHide() {
+    APP_STATISTICS.page_hide(this)
+  },
 
-    /* -------------------SelfCustomEvent------------------ */
-    onBtnClick () {
-      $utils.route2theUrl('https://nicelinks.site/explore/all?utm_source=quickapp')
-    }
+  /* -------------------SelfCustomEvent------------------ */
+  onBtnClick() {
+    $utils.route2theUrl('https://nicelinks.site/explore/all?utm_source=quickapp')
   }
+}
 </script>
 
 <style lang="less">
 @import './../../assets/styles/style.less';
-.@PAGE_CLASS_NAME{
+.@PAGE_CLASS_NAME {
 }
 </style>

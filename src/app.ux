@@ -15,7 +15,6 @@ hook2global.regeneratorRuntime = require('@babel/runtime/regenerator')
 
 export default {
   $apis: $apis,
-  showMenu: $utils.showMenu,
   createShortcut: $utils.createShortcut,
   // 此处的 async 只在于用法的一种示范，无实际意义；
   async onCreate() {
