@@ -25,10 +25,8 @@ function requestHandle(params) {
       })
       .then(response => {
         const result = response.data
-        $utils.setCurrentTime(result.headers && result.headers.Date)
-
-        /* @desc: 可跟具体不同业务接口数据，返回你所需要的部分，使得使用尽可能便捷 */
         const content = JSON.parse(result.data)
+        /* @desc: 可跟具体不同业务接口数据，返回你所需要的部分，使得使用尽可能便捷 */
         content.success ? resolve(content.value) : resolve(content.message)
       })
       .catch((error, code) => {
