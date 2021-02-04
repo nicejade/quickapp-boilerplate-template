@@ -1,6 +1,6 @@
 {
   "name": "quickapp-boilerplate-template",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "🔨致力于构建更为优雅的快应用开发脚手架模板。",
   "scripts": {
     "start": "npm run server",
