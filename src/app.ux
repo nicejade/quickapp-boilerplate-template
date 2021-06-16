@@ -10,6 +10,10 @@ const hook2global = global.__proto__ || global
 hook2global.$apis = $apis
 hook2global.$utils = $utils
 
+console.log(`当前 Version 是 :`, VERSION)
+console.log(`当前 Version Name 是 :`, VERSION_NAME)
+console.log(`当前 Version Code 是 :`, VERSION_CODE)
+
 /* 注入 runtime/regenerator，以增加对 async/await 的支持 */
 hook2global.regeneratorRuntime = require('@babel/runtime/regenerator')
 
