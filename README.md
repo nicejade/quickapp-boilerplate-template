@@ -98,6 +98,8 @@ yarn gen YourPageName
 
 ## 内置命令
 
+更推荐您直接使用[快应用 IDE](https://doc.quickapp.cn/ide/new.html)，具体可参见[快应用开发系列博文](https://forum.lovejade.cn/t/quickapp)；如果您基于 VsCode、SublimeText 等编辑器，开发快应用，以下命令可参考。
+
 |  命令 | 描述  | 备注 |
 |---|---|---|
 | `yarn start`  | 开启服务(server)和监听(watch)  | 附魔[多步优化](https://nice.lovejade.cn/zh/article/quickapp-boilerplate-template.html#%E6%94%B9%E8%BF%9B%E4%BC%98%E5%8A%BF)，一键开启开发，强烈推荐 ✔️|
